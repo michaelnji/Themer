@@ -1,0 +1,211 @@
+@use '../index'as *;
+@use '../custom/theme'as *;
+
+.button {
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: capitalize;
+  padding: 16px 25px;
+  border-radius: $border-radius;
+  border: none;
+  vertical-align: middle;
+  box-sizing: border-box;
+  outline: none;
+  display: inline-block;
+  transition: $ease;
+  font-size: 16px;
+  max-width: max-content;
+  &:active {
+    transform: scale(0.905);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 5px white,
+      0 0 0 10px lighten(map-get($theme, primary-color), 30%);
+  }
+
+  @include media("<=phone") {
+    font-size: font-size($button-font-sizes, small);
+    min-width: 7 * font-size($button-font-sizes, small);
+  }
+
+  @include media(">phone", "<=tablet") {
+    font-size: font-size($button-font-sizes, small);
+    min-width: 7 * font-size($button-font-sizes, small);
+  }
+
+  @include media(">tablet") {
+    font-size: font-size($button-font-sizes, large);
+    min-width: 7 * font-size($button-font-sizes, medium);
+  }
+}
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .spin,
+  .badge,
+  i {
+    margin-left: 0.6em;
+  }
+}
+.button--outline {
+  color: var(--primary-color);
+  border: 3px solid var(--primary-color);
+  background: transparent;
+  &:hover {
+    color: #272343;
+    background: var(--primary-color);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 5px white,
+      0 0 0 10px lighten(map-get($theme, primary-color), 10%);
+  }
+}
+.button--primary {
+  background: var(--primary-color);
+  color: #272343;
+  box-shadow: 3px 2px 4px 0px
+    transparentize($color: map-get($theme, primary-color), $amount: 0.15);
+
+  &:focus {
+    box-shadow: 0 0 0 5px white,
+      0 0 0 10px lighten(map-get($theme, primary-color), 10%);
+  }
+
+  &:hover {
+    transform: scale(1.05);
+
+    background: darken(map-get($theme, primary-color), 6%);
+  }
+
+  &:active {
+    transform: scale(0.905);
+  }
+}
+
+.button--secondary {
+  background: var(--accent-color);
+
+  color: darken($color: map-get($theme, primary-color), $amount: 20%);
+
+  &:active {
+    transform: scale(0.905) !important;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 5px white,
+      0 0 0 10px lighten(map-get($theme, primary-color), 18%);
+  }
+
+  &:hover {
+    color: var(--font-color-light);
+    background: var(--primary-color);
+    transform: scale(1.05);
+  }
+}
+
+.button--link {
+  background: transparent;
+  font-weight: 500;
+  border-radius: 0px;
+  color: var(--font-color);
+  box-shadow: inset 0 -1px 0 var(--primary-color);
+  &:focus {
+    box-shadow: 0 0 0 5px white,
+      0 0 0 10px lighten(map-get($theme, primary-color), 30%);
+    box-shadow: inset 0 -33px 0 lighten(map-get($theme, primary-color), 35%);
+  }
+
+  &:hover {
+    transform: scale(1);
+    box-shadow: inset 0 -33px 0 var(--primary-color);
+  }
+}
+
+.button--icon {
+  text-align: center;
+  font-weight: 500;
+  cursor: pointer;
+  // text-transform: uppercase;
+  padding: 7px 10px;
+  border-radius: $border-radius;
+  border: none;
+  outline: none;
+  display: inline-block;
+  transition: $ease;
+  background: var(--bg);
+
+  color: var(--primary-color);
+
+  i {
+    font-size: responsive 20px 25px;
+    vertical-align: baseline;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 5px white,
+      0 0 0 10px lighten(map-get($theme, primary-color), 30%);
+  }
+
+  &:hover {
+    transform: scale(1.03);
+    background: lighten(map-get($theme, primary-color), 30%);
+  }
+
+  &:active {
+    transform: scale(0.905);
+  }
+}
+
+.button--block {
+  display: block;
+  min-width: 84%;
+  max-width: 100%;
+}
+
+.button--rounded {
+  border-radius: 31px;
+}
+
+::-moz-focus-inner {
+  border: none;
+}
+
+.button--small {
+  font-size: 18px;
+  padding: 10px 15px;
+  min-width: 7 * 18px;
+  border-radius: $border-radius / 1.5;
+}
+
+.button--large {
+  font-size: 23px;
+  padding: 19px 15px;
+  min-width: 7.9 * 26px;
+}
+
+.button--flat {
+  border-radius: 4px;
+}
+
+.button--shadow {
+  box-shadow: 0px 3px 10px transparentize($color: rgb(0, 0, 0), $amount: 0.88);
+}
+
+// button groups
+.button-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+}
+
+.button-group > * + * {
+  display: inline-block;
+  margin-left: 20px;
+  margin-right: 20px;
+}

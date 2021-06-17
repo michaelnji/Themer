@@ -1,0 +1,141 @@
+@use '../index'as *;
+@use '../custom/theme'as *;
+
+.navbar {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 18px;
+
+  .menu {
+    display: none;
+  }
+
+  @include media("<=1300px") {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @include media("<=980px") {
+    padding-top: 20px;
+
+    .contact {
+      display: none;
+    }
+
+    .menu {
+      display: inline-block;
+
+      i {
+        font-size: 34px;
+      }
+    }
+  }
+}
+
+.navbar nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  @include media(">=980px") {
+    max-width: 50%;
+    justify-content: space-around;
+  }
+}
+
+.navbar {
+  .close-menu {
+    display: none;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    padding: 4px;
+
+    i {
+      font-size: 26px;
+    }
+  }
+
+  // .logo,
+  .logo img {
+    width: 41px;
+
+    cursor: pointer;
+    transition: $ease;
+
+    &:hover {
+      color: darken($color: map-get($theme, primary-color), $amount: 40%);
+    }
+  }
+
+  @include media("<=980px") {
+    &__list {
+      display: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: $ease;
+    }
+  }
+
+  &__list.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    width: 100%;
+    opacity: 1;
+    visibility: visible;
+    transition: $ease;
+
+    @include media("<=500px") {
+      min-width: 80%;
+    }
+
+    @include media("<=980px") {
+      z-index: 2;
+      border-top-left-radius: 16px;
+      border-bottom-left-radius: 16px;
+      box-shadow: -2px -3px transparent,
+        2px 3px 10px transparentize($color: rgb(0, 0, 0), $amount: 0.88);
+      flex-direction: column;
+      position: absolute;
+      justify-content: space-between;
+      width: 50%;
+      min-height: fit-content;
+      padding: 40px 0;
+      background: var(--bg);
+      top: -25px;
+      right: -40px;
+      transition: $ease;
+      .close-menu {
+        display: block;
+
+        i {
+          font-size: 40px;
+        }
+      }
+    }
+  }
+
+  &__link {
+    transition: $ease;
+    font-weight: 500;
+  }
+
+  &__item {
+    display: inline-block;
+    margin: 0px 20px;
+    font-style: 18px;
+
+    @include media("<=980px") {
+      display: block;
+      margin: 10px;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    &:hover .navbar__link {
+      color: var(--primary-color);
+    }
+  }
+}

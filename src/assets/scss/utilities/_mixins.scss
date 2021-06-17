@@ -1,0 +1,527 @@
+@use '../index'as *;
+@use '../custom/theme'as *;
+
+@mixin neuromorphic($color) {
+    $light-color: lighten(rgb-hsl($color), 15%);
+    $dark-color: darken(rgb-hsl($color), 15%);
+    box-shadow: $dark-color 4px 4px 8px,
+        $light-color -4px -4px 8px;
+    background: $color;
+
+}
+
+@mixin neuromorphic-text($color) {
+    $light-color: lighten(rgb-hsl($color), 15%);
+    $dark-color: darken(rgb-hsl($color), 15%);
+    text-shadow: $dark-color 2px 2px 4px,
+        $light-color -2px -2px 4px;
+    color: $color !important;
+
+}
+
+@mixin blob($width:200px, $height:200px, $color) {
+    $var1: rand(100) + 0%;
+    $var2: rand(100)+0%;
+    $var3: rand(100)+0%;
+    $var4: rand(100)+0%;
+
+
+    height: $height;
+    width: $width;
+    position: absolute;
+    border: 1px solid $color !important;
+    background: $color;
+    // border-radius: calc(#{$var1}+40) #{$var2} calc(#{$var2}+10) / #{$var3} #{$var4} calc(#{$var4}+48) !important;
+    border-radius: #{$var4} #{$var3} #{$var1} #{$var2} / #{$var3} #{$var4} #{$var1} #{$var2} !important;
+}
+
+
+@mixin nav-centered ($color:#edf0f1, $bg:white, $padding:2em, $font_size:1em) {
+
+    /* centered navigation bar*/
+    .nav-container {
+        .button-group{
+            margin: 0;
+        }
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: $padding $padding;
+        min-width: 100% !important;
+        background: $bg;
+
+        // height: auto;
+        .logo {
+            background-color: $bg;
+
+        }
+
+        li,
+        a,
+        button {
+            font-size: $font_size;
+            font-weight: 500;
+            color: $color;
+            ;
+            text-decoration: none;
+        }
+
+        .navbar {
+            background-color: $bg;
+            list-style: none;
+
+            li {
+                display: inline-block;
+                padding: 0 20px;
+                background: transparent;
+
+            }
+        }
+    }
+}
+
+@mixin nav-right($color:#edf0f1, $bg:white, $padding:2em, $font_size:1em) {
+
+    /* centered right */
+    .nav-container {
+        .button-group{
+            margin: 0;
+        }
+
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: $padding $padding;
+        width: 100%;
+        background-color: $bg;
+
+        .logo {
+            background-color: $bg;
+            margin-right: auto;
+        }
+
+        button,
+        .button-group{
+            margin-left: 20px;
+        }
+
+        li,
+        a {
+            font-size: $font_size;
+            font-weight: 500;
+            color: $color;
+            text-decoration: none;
+        }
+
+        .navbar {
+            list-style: none;
+            background-color: $bg;
+
+
+            li {
+                display: inline-block;
+                padding: 0 20px;
+                background: transparent;
+
+            }
+        }
+    }
+}
+
+@mixin nav-left($color:#edf0f1, $bg:white, $padding:2em, $font_size:1em) {
+    /* centered left */
+
+    .nav-container {
+        .button-group{
+            margin: 0;
+        }
+
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: $padding $padding;
+        width: 100%;
+        background-color: $bg;
+
+        .logo {
+            margin-left: auto;
+            order: 3;
+            background-color: $bg;
+
+        }
+
+        button,
+        .button-group{
+            margin-left: 20px;
+            order: 2;
+
+        }
+
+        li,
+        a,
+        button {
+            font-size: $font_size;
+            font-weight: 500;
+            color: $color;
+            text-decoration: none;
+        }
+
+        .navbar {
+            list-style: none;
+            order: 1;
+            background-color: $bg;
+
+
+            li {
+                display: inline-block;
+                padding: 0 20px;
+                background: transparent;
+            }
+
+            li:nth-child(1) {
+
+                padding: 0 20px 0 0;
+            }
+        }
+    }
+}
+
+// Transitions on hover for navigation links
+@mixin nav-anim-default($color) {
+
+    /* Default navigation link transition */
+    .navbar {
+        li a {
+            transition: all .3s ease;
+        }
+
+        li a:hover {
+            color: $color;
+        }
+    }
+}
+
+@mixin nav-anim-double-bar-hor($color) {
+    /* Double bar navigation link transition */
+
+    .navbar {
+        li a {
+            position: relative;
+            padding: 0 2px;
+
+        }
+
+        li a::before {
+            position: absolute;
+            content: '';
+            height: 2px;
+            width: 100%;
+            background: $color;
+            left: 0%;
+            top: 50%;
+            opacity: 0;
+            transition: all .3s;
+
+        }
+
+        li a::after {
+            position: absolute;
+            content: '';
+            height: 2px;
+            width: 100%;
+            background: $color;
+            top: 50%;
+            left: 0%;
+            opacity: 0;
+            transition: all .3s;
+
+        }
+
+        li a:hover::after {
+            top: 102%;
+            opacity: 1;
+            height: 3px;
+
+        }
+    }
+
+    li a:hover::before {
+        top: 0%;
+        height: 3px;
+        opacity: 1;
+    }
+}
+
+@mixin nav-anim-double-bar-ver($color) {
+    /* Double bar navigation link transition */
+
+    .navbar {
+        li a {
+            position: relative;
+            // width: 100%;
+            padding: 0 2px;
+        }
+
+        li a::before {
+            position: absolute;
+            content: '';
+            border: none;
+            width: 1.6px;
+            height: 100%;
+            background: $color;
+            left: 50%;
+            opacity: 0;
+            transition: all .3s;
+
+        }
+
+        li a::after {
+            position: absolute;
+            content: '';
+            width: 2px;
+            border: none;
+            height: 100%;
+            background: $color;
+            left: 50%;
+            opacity: 0;
+            transition: all .3s;
+
+        }
+
+        li a:hover::after {
+            left: 105%;
+            opacity: 1;
+            width: 3px;
+
+        }
+    }
+
+    li a:hover::before {
+        left: -5%;
+        opacity: 1;
+        width: 3px;
+    }
+}
+
+@mixin nav-anim-bar-left($color) {
+    /* slide-in from left bar navigation link transition */
+
+    .navbar {
+        li a {
+            position: relative;
+            padding: 0 2px;
+
+        }
+
+        li a::before {
+            position: absolute;
+            content: '';
+            height: 2px;
+            width: 100%;
+            background: $color;
+            right: 100%;
+            top: 100%;
+            opacity: 0;
+            transition: all .4s;
+
+        }
+
+
+    }
+
+    li a:hover::before {
+        right: 0%;
+        height: 3px;
+        opacity: 1;
+    }
+}
+
+@mixin nav-anim-bar-right($color) {
+    /* slide-in from right bar navigation link transition */
+
+    .navbar {
+        li a {
+            position: relative;
+            padding: 0 2px;
+
+        }
+
+        li a::before {
+            position: absolute;
+            content: '';
+            height: 2px;
+            width: 100%;
+            background: $color;
+            left: 100%;
+            top: 100%;
+            opacity: 0;
+            transition: all .4s;
+
+        }
+
+
+    }
+
+    li a:hover::before {
+        left: 0%;
+        height: 3px;
+        opacity: 1;
+    }
+}
+
+@mixin nav-anim-bar-bottom($color) {
+    /* slide-in from bottom bar navigation link transition */
+
+    .navbar {
+        li a {
+            position: relative;
+            padding: 0 2px;
+            transition: all .4s;
+
+
+        }
+
+        li a::before {
+            position: absolute;
+            content: '';
+            height: 2px;
+            width: 100%;
+            background: $color;
+            top: 100%;
+            opacity: 0;
+            transition: all .4s;
+
+        }
+
+
+    }
+
+    li a:hover::before {
+        top: 0%;
+        height: 3px;
+        opacity: 1;
+    }
+
+    li a:hover {
+        color: $color;
+    }
+}
+
+@mixin nav-anim-bar-top($color) {
+    /* slide-in from top bar navigation link transition */
+
+    .navbar {
+        li a {
+            position: relative;
+            padding: 0 2px;
+            transition: all .4s;
+
+
+        }
+
+        li a::before {
+            position: absolute;
+            content: '';
+            height: 2px;
+            width: 100%;
+            background: $color;
+            bottom: 100%;
+            opacity: 0;
+            transition: all .4s;
+
+        }
+
+
+    }
+
+    li a:hover::before {
+        bottom: 0%;
+        height: 3px;
+        opacity: 1;
+    }
+
+    li a:hover {
+        color: $color;
+    }
+}
+
+@mixin nav-anim-left-ver($color) {
+    /* slide in from left vertical navigation link transition */
+
+    .navbar {
+        li a {
+            position: relative;
+            // width: 100%;
+            transition: all .3s;
+            padding: 0 2px;
+        }
+
+        li a::before {
+            position: absolute;
+            content: '';
+            border: none;
+            width: 1.6px;
+            height: 100%;
+            background: $color;
+            left: 100%;
+            opacity: 0;
+            transition: all .3s;
+
+        }
+
+
+
+    }
+
+    li a:hover::before {
+        left: -5%;
+        opacity: 1;
+        width: 3px;
+    }
+
+    li a:hover {
+        color: $color;
+    }
+}
+
+@mixin nav-anim-right-ver($color) {
+    /* slide in from right vertical navigation link transition */
+
+    .navbar {
+        li a {
+            position: relative;
+            // width: 100%;
+            transition: all .3s;
+            padding: 0 2px;
+        }
+
+
+
+        li a::after {
+            position: absolute;
+            content: '';
+            width: 2px;
+            border: none;
+            height: 100%;
+            background: $color;
+            left: 0%;
+            opacity: 0;
+            transition: all .3s;
+
+        }
+
+        li a:hover::after {
+            left: 105%;
+            opacity: 1;
+            width: 3px;
+
+        }
+
+        li a:hover {
+            color: $color;
+        }
+    }
+
+
+}

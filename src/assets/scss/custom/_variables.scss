@@ -1,0 +1,118 @@
+// Typography
+@use '../utilities/mixins/compat' as *;
+
+// ? font family
+$font-family: "Lora";
+$font-family-head: "Raleway";
+
+// @include web-fonts($font-family);
+// @include web-fonts($font-family-head);
+
+// ? font sizes
+$font-sizes-desktop: (
+  h1: 63px,
+  h2: 47px,
+  h3: 23px,
+  p-large: 23px,
+  p-medium: 20px,
+  p-small: 16px,
+);
+$font-sizes-mobile: (
+  h1: 3.5rem,
+  h2: 24px,
+  p-large: 18px,
+  h3: 18px,
+  p-medium: 19px,
+  p-small: 15px,
+);
+$button-font-sizes: (
+  small: 16px,
+  medium: 18px,
+  large: 20px,
+);
+
+// ? Border
+$border-radius: 18px;
+
+// ? transitions
+$ease: all 0.3s ease-in-out;
+
+//?  Box shadows
+// Box Shadow
+$box-shadow-nav: rgba(0, 12, 32, 0.04) 0px 0px 1px 0px,
+  rgba(10, 31, 68, 0.06) 0px 10px 16px 0px;
+$box-shadow-card: rgba(89, 93, 97, 0.05) 0 3px 0,
+  rgba(94, 99, 104, 0.12) 0 4px 8px, rgba(90, 97, 105, 0.06) 0 10px 10px,
+  rgba(90, 97, 105, 0.1) 0 7px 70px;
+$box-shadow-btn: 0 6px 4px 0 rgba(0, 0, 0, 0.15);
+
+// ? used for creating utility classes
+
+// font alignment
+$font-alignment: (center, left, right, justify);
+// widths
+$width: (10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 25, 45, 55, 65, 35);
+// content alignment
+$jc: (
+  flex-start,
+  start,
+  center,
+  flex-end,
+  left,
+  right,
+  space-between,
+  space-around,
+  space-evenly
+);
+$variants: (
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25,
+  26,
+  27,
+  28,
+  29,
+  30,
+  31,
+  32,
+  33,
+  34,
+  35,
+  36,
+  37,
+  38,
+  39,
+  40,
+  41,
+  42,
+  43,
+  44,
+  45,
+  46,
+  47,
+  48,
+  49,
+  50
+);

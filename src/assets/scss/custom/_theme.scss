@@ -1,0 +1,16 @@
+// @import "./colors";
+$theme: (
+  primary-color: #ffd803,
+  // accent-color: map-get($Klein-Blue, 200),
+  font-color: #2d334a,
+  bg: #fffffe,
+  font-color-light: #485172,
+  font-color-alt: #272343,
+  font-family-head: #272343,
+);
+
+:root {
+  @each $value, $color in $theme {
+    --#{$value}: #{$color};
+  }
+}

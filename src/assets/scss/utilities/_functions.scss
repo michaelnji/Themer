@@ -1,0 +1,36 @@
+@use '../custom/theme' as *;
+@function font-size($bp, $el) {
+  @if map-has-key($map: $bp, $key: $el) {
+    @return map-get($map: $bp, $key: $el);
+  } @else {
+    @warn 'Value does not exist';
+  }
+}
+
+@function theme-color($theme, $shade) {
+  @return map-get($map: $theme, $key: $shade);
+}
+
+@function val-to-unit($val: 0, $unit: "px") {
+  @return #{$val}#{$unit};
+}
+
+@function font-color($bgd) {
+  @if (lightness($bgd) > 70) {
+    @return map-get($theme, font-color);
+  } @else {
+    @return #fff;
+  }
+}
+
+@function rgb-hsl($color) {
+  @return hsl(hue($color), saturation($color), lightness($color));
+}
+
+// returns a random number
+@function rand($num) {
+  $val: random(
+    $limit: $num,
+  );
+  @return $val;
+}
